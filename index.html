@@ -1,25 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MOTD</title>
+    <title>Pak's Pack Server MOTD</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
-            background: #111;
-            color: white;
-            font-family: Arial;
-        }
-        iframe {
-            width: 100%;
+            padding: 0;
+            background: rgba(0, 0, 0, 0.4);
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(20, 24, 30, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 6px;
+            width: 480px;
+            padding: 18px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 6px 0;
+            color: #aaa;
+            font-size: 10px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .divider:not(:empty)::before { margin-right: 10px; }
+        .divider:not(:empty)::after { margin-left: 10px; }
+
+        .subtitle {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #cccccc;
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 210px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            text-decoration: none;
+            cursor: pointer;
             border: none;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .btn-steam {
+            background-color: #0072ce;
+            color: #ffffff;
+        }
+        .btn-steam:hover {
+            background-color: #005bb5;
+        }
+
+        /* Scalowanie ikony Steam bez wpływu na przycisk */
+        .steam-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            flex-shrink: 0;
+            fill: #ffffff;
+        }
+
+        .btn-info {
+            background-color: #383e4a;
+            color: #ffffff;
+            border: 1px solid #4a5261;
+        }
+        .btn-info:hover {
+            background-color: #48505f;
+        }
+
+        .info-box {
+            display: none;
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            text-align: left;
+            font-size: 11px;
+            line-height: 1.4;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        .info-title {
+            color: #ffb700;
+            font-weight: bold;
+            margin-top: 6px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        .info-title:first-child { margin-top: 0; }
+
+        .info-list {
+            margin: 0;
+            padding-left: 15px;
+            color: #dddddd;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ffb700;
+            letter-spacing: 1px;
+            margin-top: 6px;
         }
     </style>
+
+    <script>
+        function toggleInfo() {
+            var box = document.getElementById('server-info');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
 </head>
 <body>
 
-<iframe src="https://pakwastaken.github.io/cssmotd/"></iframe>
+<div class="card">
+    <div class="title">★ WELCOME TO ★</div>
+    <div class="title">PAK'S PACK SERVER</div>
+
+    <div class="divider">★</div>
+
+    <div class="subtitle">JOIN OUR STEAM COMMUNITY</div>
+
+    <div class="button-group">
+        <!-- STEAM BUTTON -->
+        <a href="https://steamcommunity.com/groups/TWOJA_GRUPA" target="_blank" class="btn btn-steam">
+            <svg class="steam-icon" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17l3.17-4.35c-.32-.23-.6-.52-.82-.86l-3.32 1.37c-.32-1.04-.49-2.14-.49-3.28 0-.32.02-.64.05-.95l3.58.89c.17-.67.54-1.26 1.05-1.7l-2.47-3.56c.4-.28.83-.51 1.29-.68l2.67 3.85c.78-.32 1.64-.42 2.5-.27l2.58-3.73c.48.16.93.38 1.35.65l-2.42 3.5c.57.43.98 1.03 1.17 1.72l3.63-.91c.03.31.05.63.05.95 0 1.14-.17 2.24-.49 3.28l-3.38-1.4c-.21.34-.49.63-.81.86l3.12 4.29C20.84 21.42 24 17.08 24 12c0-6.63-5.37-12-12-12zm0 15.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            OPEN STEAM GROUP
+        </a>
+
+        <!-- SERVER INFO BUTTON -->
+        <button class="btn btn-info" onclick="toggleInfo()">
+            SERVER INFO
+        </button>
+    </div>
+
+    <!-- EXPANDABLE SECTION -->
+    <div id="server-info" class="info-box">
+        <div class="info-title">Match Settings</div>
+        <ul class="info-list">
+            <li><strong>Mode:</strong> Competitive 5v5 (MR15)</li>
+            <li><strong>Round Time:</strong> 1:45 min | Bomb: 35s</li>
+        </ul>
+
+        <div class="info-title">Server Rules</div>
+        <ul class="info-list">
+            <li>1. No cheats / scripts allowed (Perm Ban).</li>
+            <li>2. Respect all players in text & voice chat.</li>
+            <li>3. Play the objective (Plant/Defuse).</li>
+        </ul>
+
+        <div class="info-title">Mods & Features</div>
+        <ul class="info-list">
+            <li>Custom VGUI Buy Menu</li>
+            <li>Bomb Plant & Defuse Rewards</li>
+        </ul>
+    </div>
+
+    <div class="divider">★</div>
+
+    <div class="footer-text">★ BE NICE AND HAVE FUN ★</div>
+</div>
 
 </body>
 </html>
